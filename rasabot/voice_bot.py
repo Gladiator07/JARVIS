@@ -5,8 +5,25 @@
 
 import requests
 import speech_recognition as sr     # import the library
-import subprocess
-from gtts import gTTS
+# import subprocess
+import pyttsx3
+
+# from gtts import gTTS
+
+engine = pyttsx3.init('sapi5')
+voices = engine.getProperty('voices')
+engine.setProperty('voices', voices[0].id)
+
+
+# rate = engine.getProperty('rate')
+
+
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
+    rate = engine.getProperty('rate')
+    engine.setProperty('rate', 180)
+
 
 # sender = input("What is your name?\n")
 
@@ -20,11 +37,37 @@ for i in r.json():
     bot_message = i['text']
     print(f"{bot_message}")
 
-myobj = gTTS(text=bot_message)
-myobj.save("welcome.mp3")
-print('saved')
+speak(bot_message)
+# myobj = gTTS(text=bot_message)
+# myobj.save("welcome.mp3")
+# print('saved')
 # Playing the converted file
-subprocess.call(['mpg321', "welcome.mp3", '--play-and-exit'])
+# subprocess.call(['mpg321', "welcome.mp3", '--play-and-exit'])
+
+
+# Function for recognizing the voice and converting it into text
+def myCommand():
+    r = sr.Recognizer()
+
+    with sr.Microphone() as source:
+        print("Listening...")
+        r.pause_threshold = 1
+
+        r.adjust_for_ambient_noise(sour, duration=1)
+
+        audio = r.listen(source)
+
+        try:
+            print("Recognizing")
+            command = r.recognize_google(audio, language='en-in')
+            print(f"You said: {command}\n")
+
+        except:
+            speak("Please try saying again")
+
+            return "None"
+    return command
+
 
 while bot_message != "Bye" or bot_message!='thanks':
 
@@ -49,8 +92,14 @@ while bot_message != "Bye" or bot_message!='thanks':
         bot_message = i['text']
         print(f"{bot_message}")
 
-    myobj = gTTS(text=bot_message)
-    myobj.save("welcome.mp3")
-    print('saved')
-    # Playing the converted file
-    subprocess.call(['mpg321', "welcome.mp3", '--play-and-exit'])
+    speak(bot_message)
+#     myobj = gTTS(text=bot_message)
+#     myobj.save("welcome.mp3")
+#     print('saved')
+#     # Playing the converted file
+#     subprocess.call(['mpg321', "welcome.mp3", '--play-and-exit'])
+
+if __name__ == "__main__":
+    #start()
+    while True:
+        command = myCommand()

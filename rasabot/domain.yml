@@ -1,112 +1,96 @@
-## intent:network_issue
-- Actually, I gave a call regarding the network issues.
-- I called regarding network issue
-- I am facing the network issue
 
-## intent:my_name_is
-- My name is [Ashish](NAME)
-- [ashish](NAME:Ashish) this side
-- It's [ashish](NAME:Ashish)
-- [ashish](NAME:Ashish) is my name
-- you can call me [Innovate](NAME)
-- [Ashish](NAME)
-- [Rahul](NAME)
-- [Innovate](NAME)
-- [ashish](NAME:Ashish)
-- [ashish](NAME:Ashish)
-
-## intent:facing_issue
-- I am facing [network issues](NETWORK). Every time I give a call, there is a call drop after connection. Sometimes it also takes more than 2 minutes to connect a call.
-- facing [network issues](NETWORK) every time I make a call. Sometime it takes a time longer than usual.
-
-## intent:headset
-- I am using a [samsung](BRAND:samsung) phone.
-- I have [One plus](BRAND) mobile
-- I am using [one +](BRAND:One plus)
-- I use [I-phone](BRAND)
-- I prefer [i phone](BRAND:I-phone)
-- i am using [one plus](BRAND:One plus) mobile
-- i am using [sam sung](BRAND:samsung)
-- i am using [oneplus](BRAND:One plus) mobile
-- i am using [nokia](BRAND) mobile
-
-## intent:guide_me
-- Could you please guide me?
-- could you suggest me how to do that?
-- guide me how to do it
-- i don't know how to do it
-
-## intent:have_to_do
-- What will I have to do to get a 4G SIM for the same number?
-- What is the procedure to get the 4G SIM for the same number
-- process to get the 4G SIM for the same number
-
-## intent:thanks
-- Thank you so much!
+  
+actions:
+- action_your_num
+- utter_change_settings
+- utter_cheer_up
+- utter_chitchat
+- utter_did_that_help
+- utter_goodbye
+- utter_greet
+- utter_happy
+- utter_iamabot
+- utter_num_confirm
+- utter_num_verify
+- utter_solution
+- utter_solution_4G
+- utter_submit
+- utter_tell_issue
+- utter_your_num
+- utter_thanks
+- utter_anything_else
+entities:
+- BRAND
+- NAME
+- NETWORK
+forms:
+- form_info
+intents:
+- greet
+- headset
+- affirm
+- network_issue
+- my_name_is
 - thanks
-- tnx
-- thank you so much
-- thanks alot
-- ty
-
-## intent:greet
-- hey
-- hello
-- hi
-- good morning
-- good evening
-- hey there
-
-## intent:goodbye
-- bye
+- facing_issue
+- guide_me
 - goodbye
-- see you around
-- see you later
-
-## intent:affirm
-- yes
-- indeed
-- of course
-- that sounds good
-- correct
-
-## intent:deny
-- no
-- never
-- I don't think so
-- don't like that
-- no way
-- not really
-
-## intent:mood_great
-- perfect
-- very good
-- great
-- amazing
-- wonderful
-- I am feeling very good
-- I am great
-- I'm good
-
-## intent:mood_unhappy
-- sad
-- very sad
-- unhappy
-- bad
-- very bad
-- awful
-- terrible
-- not very good
-- extremely sad
-- so sad
-
-## intent:bot_challenge
-- are you a bot?
-- are you a human?
-- am I talking to a bot?
-- am I talking to a human?
-
-## intent:number
-- [7](num:7)
-- [seven](num:7)
-
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- have_to_do
+slots:
+  BRAND:
+    type: unfeaturized
+  NAME:
+    type: unfeaturized
+  requested_slot:
+    type: unfeaturized
+templates:
+  utter_ask_BRAND:
+  - text: Sir, I would like to tell you that your issues will be resolved. Could I
+      please know which handset you are using?
+  utter_ask_NAME:
+  - text: Ok. Please provide your first name?
+  utter_change_settings:
+  - text: I would like to tell you, sir, that you need to change certain settings
+      of your phone because there is no issue on your end.
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_chitchat:
+  - text: I'm not designed for this.
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_goodbye:
+  - text: Bye
+  utter_greet:
+  - text: Hello! I am calling from Innovate Yourself. How may I assist you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_num_confirm:
+  - text: Is this the same mobile number on which you are facing network issues?
+  utter_num_verify:
+  - text: Could you please confirm me your mobile number?
+  utter_solution:
+  - text: Sure sir, I will guide you for that. Go to your settings, select network,
+      and select 3G if you’ve chosen 4G because your sim is not supporting 4G. That’s
+      why you are facing problems while calling.
+  utter_solution_4G:
+  - text: Please visit your nearest store. They will provide you the 4G sim for the
+      same.
+  utter_submit:
+  - text: Your name is {name} and your headset is {headset}. Is this correct?
+  utter_tell_issue:
+  - text: Thanks for confirming, tell me what issues you are facing?
+  utter_your_num:
+  - text: Your number is {number}?
+  utter_wrong_value:
+  - text: Enter the valid headset!
+  utter_thanks:
+    - text: Thank you for calling Innovate Yourself.
+  utter_anything_else:
+    - text: Is there anything else I can help you with?
