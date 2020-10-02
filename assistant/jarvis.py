@@ -34,7 +34,7 @@ class Jarvis:
         while True:
             voice_note = self.read_voice()
             for key in self.config:
-                Utils.match_pattern(voice_note, self.config[key]['utterances'])
+                utterances = Utils.match_pattern(voice_note, self.config[key]['utterances'])
                 if utterances:
                     response = Utils.choose_random(
                         self.config[key]['response'])
@@ -43,4 +43,4 @@ class Jarvis:
                 Greeting(self.logger, response)
                 break
             else:
-                Utils.tts('Sorry sir I could not understand)
+                Utils.tts('Sorry sir I could not understand')

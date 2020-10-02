@@ -1,16 +1,17 @@
 import re
 import random
 import os
-
+import pyttsx3
 
 class Utils:
     def __init__(self, logger):
         self.logger = logger
+        self.engine = pyttsx3.init()
 
     @staticmethod
     def normalize_utterances(self, utterances):
         for u in utterances:
-            u = re.sub('\\W+', '', u)
+            u = re.sub('\\W+', ' ', u)
             normalized += u.lower().strip()+"|"
 
         return normalized[:-1]
@@ -29,6 +30,7 @@ class Utils:
     def choose_random(response):
         return random.choice(response)
 
-    @staticmethod
-    def tts(response):
-        os.system('say {}'.format(response))
+    def tts(self, response):
+        # os.system('say {}'.format(response))
+        self.engine.say(response)
+        self.engine.runAndWait()
