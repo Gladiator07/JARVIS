@@ -9,7 +9,8 @@ class Utils:
         self.engine = pyttsx3.init()
 
     @staticmethod
-    def normalize_utterances(self, utterances):
+    def normalize_utterances(utterances):
+        normalized = ''
         for u in utterances:
             u = re.sub('\\W+', ' ', u)
             normalized += u.lower().strip()+"|"

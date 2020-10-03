@@ -4,6 +4,7 @@ class Greeting:
     def __init__(self, logger, response):
         self.logger = logger
         self.response = response
+        self.utils = Utils(self.logger)
 
     def speak(self):
-        Utils.tts(self.response)
+        self.utils.tts(self.response)
