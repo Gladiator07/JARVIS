@@ -1,5 +1,10 @@
 import speech_recognition as sr
 import pyttsx3
+import json
+
+def read_config():
+    with open('config.json') as file:
+        return json.load(file)
 
 
 engine = pyttsx3.init('sapi5')
@@ -38,6 +43,9 @@ if __name__ == "__main__":
     while True:
         command = get_audio().lower()
 
+        intent = ''
+        for key in config:
+            utterances = 
         if "hello" in command:
             speak("At your service sir")
 
