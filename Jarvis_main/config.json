@@ -6,7 +6,8 @@
             "hello jarvis",
             "are you there jarvis",
             "are you there",
-            "you there"
+            "you there",
+            "time to work"
         ],
         "response": [
             "hello sir, how may I help you?",
@@ -15,6 +16,8 @@
             "i am ready sir",
             "how may i help you",
             "your wish, my responsibility"
+            
+
         ]
     }
 }
