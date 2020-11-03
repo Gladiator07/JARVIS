@@ -2,6 +2,8 @@ import re
 import random
 import pyttsx3
 
+
+
 class Utils:
     def __init__(self, logger):
         self.logger = logger
@@ -30,12 +32,9 @@ class Utils:
     def choose_random(response):
         return random.choice(response)
 
-    @staticmethod
-    def speak(response):
-        engine = pyttsx3.init('sapi5')
-        voices = engine.getProperty('voices')
-        engine.setProperty('voices', voices[0].id)  
-
-        engine.say(text)
-        engine.runAndWait()
-        engine.setProperty('rate', 180)
+    def speak(self, response):
+        self.engine = pyttsx3.init('sapi5')
+        self.voices = self.engine.getProperty('voices')
+        self.engine.setProperty('voices', self.voices[0].id)
+        self.engine.say(response)
+        self.engine.runAndWait()
