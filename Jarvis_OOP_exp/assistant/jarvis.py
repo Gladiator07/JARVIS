@@ -2,6 +2,8 @@ import threading
 import speech_recognition as sr
 from utils.utils import Utils
 from intents.greeting import Greeting
+
+
 class Jarvis:
     def __init__(self, logger, config):
         self.logger = logger
@@ -39,12 +41,14 @@ class Jarvis:
             for key in self.config:
                 utterances = Utils.match_pattern(command, self.config[key]['utterances'])
                 if utterances:
+                    intent = key
                     response = Utils.choose_random(self.config[key]['response'])
                     break
 
-            if key == 'intent_greeting':
-                Greeting(self.logger, response).speak()
+            if intent == 'intent_greeting':
+                greeting = Greeting(self.logger, response)
+                greeting.speak()
                 break
             
-            else:
-                Utils.speak('Intent not found')
+            # else:
+            #     Utils.speak('Intent not found')
