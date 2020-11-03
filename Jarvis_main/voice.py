@@ -42,12 +42,12 @@ if __name__ == "__main__":
     #start()
     while True:
         command = get_audio().lower()
-
         intent = ''
-        for key in config:
-            utterances = 
-        if "hello" in command:
-            speak("At your service sir")
+        
+        
+            
 
-        elif "wake up jarvis" in command:
-            speak("Hello sir, always at your service sir")
+        # intent = ''
+        # for key in config:
+        #     utterances = 
+        if 
