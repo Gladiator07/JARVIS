@@ -4,16 +4,11 @@
             "jarvis",
             "wake up jarvis",
             "hello jarvis",
-            "are you there jarvis",
-            "are you there",
-            "you there"
+            "you there jarvis"
         ],
         "response": [
-            "hello sir, how may I help you?",
-            "at your service sir",
-            "hello sir, always at your service",
-            "i am ready sir",
-            "how may i help you"
+            "Hello Sir, How may i help you?",
+            "Hello Sir, always at your service"
         ]
     }
 }
