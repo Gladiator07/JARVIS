@@ -1,0 +1,15 @@
+{
+    "intent_greeting":{
+        "utterances":[
+            "jarvis",
+            "wake up jarvis",
+            "you there jarvis",
+            "hello jarvis"
+        ],
+        "response":[
+            "Hello sir, How may i help you?",
+            "Always ready for you sir",
+            "up and running sir"
+        ]
+    }
+}
