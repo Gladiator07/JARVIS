@@ -2,3 +2,4 @@ References/
 env/
 .vscode/
 __pycache__/
+experiments/

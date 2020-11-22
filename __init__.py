@@ -3,7 +3,7 @@ import os
 import pyttsx3
 import sys
 
-import features.date_time as dt
+from main.features import date_time
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -30,27 +30,27 @@ class Jarvis:
                 print(f'You said: {command}')
             except:
                 print('Please try again')
-                command = self.mic_input)
+                command = self.mic_input()
             return command
         except Exception as e:
             print(e)
             return  False
 
 
-        def speak(self, text):
-            """
-            Convert any text to speech
-            :param text: text(String)
-            :return: True/False (Play sound if True otherwise write exception to log and return  False)
-            """
-            try:
-                engine.say(text)
-                engine.runAndWait()
-                engine.setProperty('rate', 180)
-                return True
-            except:
-                t = "Sorry I couldn't understand and handle this input"
-                print(t)
-                return False
+    def speak(self, text):
+        """
+        Convert any text to speech
+        :param text: text(String)
+        :return: True/False (Play sound if True otherwise write exception to log and return  False)
+        """
+        try:
+            engine.say(text)
+            engine.runAndWait()
+            engine.setProperty('rate', 180)
+            return True
+        except:
+            t = "Sorry I couldn't understand and handle this input"
+            print(t)
+            return False
 
 
