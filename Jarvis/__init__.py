@@ -37,7 +37,7 @@ class JarvisAssistant:
             return  False
 
 
-    def speak(self, text):
+    def tts(self, text):
         """
         Convert any text to speech
         :param text: text(String)
@@ -61,4 +61,6 @@ class JarvisAssistant:
         print(memory)
         return memory
 
+    def tell_me_date(self):
 
+        return date_time.date()
