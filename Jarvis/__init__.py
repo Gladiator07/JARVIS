@@ -54,12 +54,12 @@ class JarvisAssistant:
             return False
 
 
-    def read_json(self):
+    # def read_json(self):
 
-        with open('Jarvis/config/config.json') as file:
-            memory = json.load(file)
-        print(memory)
-        return memory
+    #     with open('Jarvis/config/config.json') as file:
+    #         memory = json.load(file)
+    #     print(memory)
+    #     return memory
 
     def tell_me_date(self):
 
