@@ -2,7 +2,7 @@ import speech_recognition as sr
 import os
 import pyttsx3
 import sys
-
+import json
 from Jarvis.features import date_time
 
 engine = pyttsx3.init('sapi5')
@@ -52,5 +52,13 @@ class JarvisAssistant:
             t = "Sorry I couldn't understand and handle this input"
             print(t)
             return False
+
+
+    def read_json(self):
+
+        with open('Jarvis/config/config.json') as file:
+            memory = json.load(file)
+        print(memory)
+        return memory
 
 
