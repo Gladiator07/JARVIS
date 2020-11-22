@@ -5,7 +5,9 @@ import sys
 
 import features.date_time as dt
 
-
+engine = pyttsx3.init('sapi5')
+voices = engine.getProperty('voices')
+engine.setProperty('voices', voices[0].id)
 
 class Jarvis:
     def __init__(self):
@@ -33,3 +35,22 @@ class Jarvis:
         except Exception as e:
             print(e)
             return  False
+
+
+        def speak(self, text):
+            """
+            Convert any text to speech
+            :param text: text(String)
+            :return: True/False (Play sound if True otherwise write exception to log and return  False)
+            """
+            try:
+                engine.say(text)
+                engine.runAndWait()
+                engine.setProperty('rate', 180)
+                return True
+            except:
+                t = "Sorry I couldn't understand and handle this input"
+                print(t)
+                return False
+
+
