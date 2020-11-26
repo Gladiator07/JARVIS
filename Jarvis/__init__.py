@@ -4,7 +4,7 @@ import pyttsx3
 import sys
 import json
 from Jarvis.features import date_time
-
+from Jarvis.features import launch_app
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voices', voices[0].id)
@@ -23,7 +23,7 @@ class JarvisAssistant:
                 print("Listening....")
                 r.pause_threshold = 1
                 r.adjust_for_ambient_noise(source, duration=1)
-                r.energy_threshold = 3000
+                r.energy_threshold = 5000
                 audio = r.listen(source)
             try:
                 command = r.recognize_google(audio, language='en-in').lower()
@@ -64,3 +64,11 @@ class JarvisAssistant:
     def tell_me_date(self):
 
         return date_time.date()
+
+    def launch_any_app(self, path_of_app):
+        """
+        Launch any windows application 
+        :param path_of_app: path of exe 
+        :return: True is success and open the application, False if fail
+        """
+        return launch_app.launch_app(path_of_app)
