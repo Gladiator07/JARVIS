@@ -25,7 +25,7 @@ while True:
         print(date)
         speak(date)
     
-    if re.search('launch|open', command):
+    if re.search('launch', command):
         dict_app = {
             'chrome': 'C:\Program Files\Google\Chrome\Application\chrome'
         }
@@ -46,6 +46,11 @@ while True:
         speak(random.choice(GREETINGS_RES))
 
     
+    if re.search('open', command):
+        domain = command.split(' ')[-1]
+        open_result = obj.website_opener(domain)
+        speak(f'Alright sir !! Opening {domain}')
+        print(open_result)
         
 # def speak(text):
 #     obj.tts(text)
