@@ -6,6 +6,7 @@ import json
 from Jarvis.features import date_time
 from Jarvis.features import launch_app
 from Jarvis.features import website_open
+from Jarvis.features import weather
 
 
 engine = pyttsx3.init('sapi5')
@@ -83,3 +84,17 @@ class JarvisAssistant:
         :return: True if success, False if fail
         """
         return website_open.website_opener(domain)
+
+
+    def weather(self, city='Jalgaon'):
+        """
+        Return weather
+        :param city: Any city of this world
+        :return: weather info as string if True, or False
+        """
+        try:
+            res = weather.weather_app(city)
+        except Exception as e:
+            print(e)
+            res = False
+        return res

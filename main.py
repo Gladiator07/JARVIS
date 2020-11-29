@@ -51,6 +51,12 @@ while True:
         open_result = obj.website_opener(domain)
         speak(f'Alright sir !! Opening {domain}')
         print(open_result)
+
+    if re.search('weather|temperature', command):
+        city = command.split(' ')[-1]
+        weather_res = obj.weather(city=city)
+        print(weather_res)
+        speak(weather_res)
         
 # def speak(text):
 #     obj.tts(text)
