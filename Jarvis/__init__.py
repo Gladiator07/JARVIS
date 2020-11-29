@@ -5,6 +5,9 @@ import sys
 import json
 from Jarvis.features import date_time
 from Jarvis.features import launch_app
+from Jarvis.features import website_open
+
+
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voices', voices[0].id)
@@ -72,3 +75,11 @@ class JarvisAssistant:
         :return: True is success and open the application, False if fail
         """
         return launch_app.launch_app(path_of_app)
+
+    def website_opener(self, domain):
+        """
+        This will open website according to domain
+        :param domain: any domain, example "youtube.com"
+        :return: True if success, False if fail
+        """
+        return website_open.website_opener(domain)
