@@ -19,11 +19,11 @@ class JarvisAssistant:
         """
         try:
             r = sr.Recognizer()
+            # r.pause_threshold = 1
+            # r.adjust_for_ambient_noise(source, duration=1)
             with sr.Microphone() as source:
                 print("Listening....")
-                r.pause_threshold = 1
-                r.adjust_for_ambient_noise(source, duration=1)
-                r.energy_threshold = 5000
+                r.energy_threshold = 4000
                 audio = r.listen(source)
             try:
                 command = r.recognize_google(audio, language='en-in').lower()
