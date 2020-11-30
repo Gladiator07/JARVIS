@@ -7,6 +7,7 @@ from Jarvis.features import date_time
 from Jarvis.features import launch_app
 from Jarvis.features import website_open
 from Jarvis.features import weather
+from Jarvis.features import wikipedia
 
 
 engine = pyttsx3.init('sapi5')
@@ -98,3 +99,12 @@ class JarvisAssistant:
             print(e)
             res = False
         return res
+
+    def tell_me(self, topic):
+        """
+        Tells about anything from wikipedia
+        :param topic: any string is valid options
+        :return: First 500 character from wikipedia if True, False if fail
+        """
+        return wikipedia.tell_me_about(topic)
+        

@@ -27,7 +27,7 @@ while True:
     
     if re.search('launch', command):
         dict_app = {
-            'chrome': 'C:\Program Files\Google\Chrome\Application\chrome'
+            'chrome': 'C:/Program Files/Google/Chrome/Application/chrome'
         }
         
         app = command.split(' ', 1)[1]
@@ -57,7 +57,16 @@ while True:
         weather_res = obj.weather(city=city)
         print(weather_res)
         speak(weather_res)
-        
+    
+    if re.search('tell me about', command):
+        topic = command.split(' ')[-1]
+        if topic:
+            wiki_res = obj.tell_me(topic)
+            print(wiki_res)
+            speak(wiki_res)
+        else:
+            speak("Sorry sir. I couldn't load your query from my database. Please try again")
+            
 # def speak(text):
 #     obj.tts(text)
 # memory = obj.read_json()
