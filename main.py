@@ -1,5 +1,5 @@
 from Jarvis import JarvisAssistant
-import json, re, random
+import json, re, random, pprint
 obj = JarvisAssistant()
 
 # ================================ MEMORY ===========================================================================================================
@@ -66,7 +66,13 @@ while True:
             speak(wiki_res)
         else:
             speak("Sorry sir. I couldn't load your query from my database. Please try again")
-            
+
+    if 'news' in command:
+        news_res = obj.news()
+        pprint.pprint(news_res)
+        speak(f"I have found {len(news_res)} news")
+        speak("Top 5 headlines of the day are: ")
+        speak(news_res[:5])
 # def speak(text):
 #     obj.tts(text)
 # memory = obj.read_json()

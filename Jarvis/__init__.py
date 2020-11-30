@@ -8,6 +8,7 @@ from Jarvis.features import launch_app
 from Jarvis.features import website_open
 from Jarvis.features import weather
 from Jarvis.features import wikipedia
+from Jarvis.features import news
 
 
 engine = pyttsx3.init('sapi5')
@@ -107,4 +108,11 @@ class JarvisAssistant:
         :return: First 500 character from wikipedia if True, False if fail
         """
         return wikipedia.tell_me_about(topic)
+
+    def news(self):
+        """
+        Fetch top news of the day from google news
+        :return: news list of string if True, False if fail
+        """
+        return news.news()
         
