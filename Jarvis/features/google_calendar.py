@@ -56,10 +56,10 @@ def authenticate_google():
 
     return service
 
-def get_events(date, service):
+def get_events(day, service):
     # Call the Calendar API
-    date = datetime.datetime.combine(date, datetime.datetime.min.time())
-    end_date = datetime.datetime.combine(date, datetime.datetime.max.time())
+    date = datetime.datetime.combine(day, datetime.datetime.min.time())
+    end_date = datetime.datetime.combine(day, datetime.datetime.max.time())
     utc = pytz.UTC
     date = date.astimezone(utc)
     end_date = end_date.astimezone(utc)
@@ -79,7 +79,7 @@ def get_events(date, service):
         for event in events:
             start = event['start'].get('dateTime', event['start'].get('date'))
             print(start, event['summary'])
-            start_time = str(start.split("T")[1].split(":")[0])  # get the hour the event starts
+            start_time = str(start.split("T")[1].split("+")[0])  # get the hour the event starts
             if int(start_time.split(":")[0]) < 12:  # if the event is in the morning
                 start_time = start_time + "am"
             else:
