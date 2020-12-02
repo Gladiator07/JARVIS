@@ -1,6 +1,5 @@
-import requests
-import json
-import config
+import requests, json, config
+
 
 
 def fetch_weather(city):
