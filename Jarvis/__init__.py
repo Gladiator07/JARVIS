@@ -9,7 +9,7 @@ from Jarvis.features import website_open
 from Jarvis.features import weather
 from Jarvis.features import wikipedia
 from Jarvis.features import news
-
+from Jarvis.features import email
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -74,7 +74,7 @@ class JarvisAssistant:
     def tell_time(self):
 
         return date_time.time()
-        
+
     def launch_any_app(self, path_of_app):
         """
         Launch any windows application 
@@ -119,3 +119,7 @@ class JarvisAssistant:
         :return: news list of string if True, False if fail
         """
         return news.get_news()
+    
+    def send_mail(self, sender_email=None, sender_password=None, receiver_email=None, msg="Hello"):
+
+        return email.mail(sender_email, sender_password, receiver_email, msg)
