@@ -11,6 +11,8 @@ from Jarvis.features import wikipedia
 from Jarvis.features import news
 from Jarvis.features import send_email
 from Jarvis.features import google_calendar
+from Jarvis.features import note
+
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voices', voices[0].id)
@@ -133,3 +135,6 @@ class JarvisAssistant:
             return google_calendar.get_events(date, service)
         else:
             pass
+
+    def take_note(self, text):
+        note.note(text)

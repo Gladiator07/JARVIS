@@ -157,3 +157,9 @@ while True:
     if "what do i have" in command or "do i have plans" or "am i busy" in command:
         text = command
         obj.google_calendar_events(text)
+
+    if "make a note" in command or "write this down" in command or "remember this" in command:
+        speak("What would you like me to write down?")
+        note_text = obj.mic_input()
+        obj.take_note(note_text)
+        speak("I've made a note of that")
