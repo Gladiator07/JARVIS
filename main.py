@@ -29,6 +29,7 @@ EMAIL_DIC = {
     'my second mail': 'atharvaaingle@gmail.com'
 }
 
+CALENDAR_STRS = ["what do i have", "do i have plans", "am i busy"]
 # =======================================================================================================================================================
 def speak(text):
     obj.tts(text)
@@ -152,3 +153,7 @@ while True:
 
         except:
             speak("Sorry sir. Couldn't send your mail. Please try again")
+
+    if "what do i have" in command or "do i have plans" or "am i busy" in command:
+        text = command
+        obj.google_calendar_events(text)

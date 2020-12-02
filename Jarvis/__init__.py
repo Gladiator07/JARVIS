@@ -11,7 +11,6 @@ from Jarvis.features import wikipedia
 from Jarvis.features import news
 from Jarvis.features import send_email
 from Jarvis.features import google_calendar
-
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voices', voices[0].id)
@@ -33,6 +32,7 @@ class JarvisAssistant:
                 r.energy_threshold = 4000
                 audio = r.listen(source)
             try:
+                print("Recognizing...")
                 command = r.recognize_google(audio, language='en-in').lower()
                 print(f'You said: {command}')
             except:
@@ -125,8 +125,11 @@ class JarvisAssistant:
 
         return send_email.mail(sender_email, sender_password, receiver_email, msg)
 
-    def google_calendar_events(self):
-
+    def google_calendar_events(self, text):
         service = google_calendar.authenticate_google()
+        date = google_calendar.get_date(text) 
         
-        return google_calendar.get_events(7, service)
+        if date:
+            return google_calendar.get_events(date, service)
+        else:
+            pass
