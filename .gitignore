@@ -5,3 +5,5 @@ __pycache__/
 experiments/
 *.log
 config.py
+*.pickle
+credentials.json
