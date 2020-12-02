@@ -114,5 +114,5 @@ class JarvisAssistant:
         Fetch top news of the day from google news
         :return: news list of string if True, False if fail
         """
-        return news.news()
+        return news.get_news()
         

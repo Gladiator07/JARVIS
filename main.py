@@ -8,6 +8,7 @@ GREETINGS = ["hello jarvis", "jarvis", "wake up jarvis", "you there jarvis", "ti
 "ok jarvis", "are you there"]
 GREETINGS_RES = ["always there for you sir", "i am ready sir", "your wish my command", "how can i help you sir?", "i am online and ready sir"]
 
+NEWS = ["buzzing today", "top headlines", "news"]
 
 
 
@@ -67,19 +68,14 @@ while True:
         else:
             speak("Sorry sir. I couldn't load your query from my database. Please try again")
 
-    if 'news' in command:
+    if "buzzing today" in command or "news" in command:
         news_res = obj.news()
-        pprint.pprint(news_res)
-        speak(f"I have found {len(news_res)} news")
-        speak("Top 5 headlines of the day are: ")
-        speak(news_res[:5])
-# def speak(text):
-#     obj.tts(text)
-# memory = obj.read_json()
-# # command = obj.mic_input()
-
-
-# if re.search('date', command):
-#     date = obj.tell_me_date()
-#     print(date)
-#     speak(date)
+        speak('Source: The Times Of India')
+        speak('Todays Headlines are..')
+        for index, articles in enumerate(news_res):
+            pprint.pprint(articles['title'])
+            speak(articles['title'])
+            if index == len(news_res)-1:
+                break
+            # speak('Moving on the next news headline..')
+        speak('These were the top headlines, Have a nice day Sir!!..')
