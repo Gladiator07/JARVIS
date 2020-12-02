@@ -10,6 +10,7 @@ from Jarvis.features import weather
 from Jarvis.features import wikipedia
 from Jarvis.features import news
 from Jarvis.features import send_email
+from Jarvis.features import google_calendar
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -122,4 +123,9 @@ class JarvisAssistant:
     
     def send_mail(self, sender_email, sender_password, receiver_email, msg):
 
-        return email.mail(sender_email, sender_password, receiver_email, msg)
+        return send_email.mail(sender_email, sender_password, receiver_email, msg)
+
+    def google_calendar_events(self):
+
+        service = google_calendar.authenticate_google()
+        get_events(7, service)
