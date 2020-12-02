@@ -5,6 +5,7 @@ import random
 import pprint
 import webbrowser
 import config
+import datetime
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import urllib.request  # used to make requests
@@ -27,7 +28,6 @@ EMAIL_DIC = {
     'my official mail': 'atharvaaingle@gmail.com',
     'my second mail': 'atharvaaingle@gmail.com'
 }
-
 
 # =======================================================================================================================================================
 def speak(text):
