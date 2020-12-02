@@ -9,7 +9,7 @@ from Jarvis.features import website_open
 from Jarvis.features import weather
 from Jarvis.features import wikipedia
 from Jarvis.features import news
-from Jarvis.features import email
+from Jarvis.features import send_email
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
