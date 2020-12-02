@@ -71,6 +71,10 @@ class JarvisAssistant:
 
         return date_time.date()
 
+    def tell_time(self):
+
+        return date_time.time()
+        
     def launch_any_app(self, path_of_app):
         """
         Launch any windows application 
