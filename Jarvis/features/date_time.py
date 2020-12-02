@@ -20,7 +20,7 @@ def time():
     :return: time if success, False if fail
     """
     try:
-        time = datetime.datetime.now().strftime("%H:%M")
+        time = datetime.datetime.now().strftime("%H:%M:%S")
     except Exception as e:
         print(e)
         time = False
