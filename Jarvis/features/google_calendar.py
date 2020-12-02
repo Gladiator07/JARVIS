@@ -1,14 +1,29 @@
 from __future__ import print_function
-import datetime
-import pickle
-import os.path
+import datetime, pytz, pyttsx3, pickle, os.path
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
+
+
 MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
 DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
-DAYS_EXTENSIONS = ["rd", "th", "st"]
+DAY_EXTENSIONS = ["rd", "th", "st", "nd"]
+
+
+
+
+
+def speak(text):
+    engine = pyttsx3.init('sapi5')
+    voices = engine.getProperty('voices')
+    engine.setProperty('voices', voices[0].id)
+    engine.say(text)
+    engine.runAndWait()
+    engine.setProperty('rate', 180)
+
+
+
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
@@ -41,29 +56,45 @@ def authenticate_google():
 
     return service
 
-def get_events(n, service):
+def get_events(date, service):
     # Call the Calendar API
-    now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    print('Getting the upcoming {n} events')
-    events_result = service.events().list(calendarId='primary', timeMin=now,
-                                        maxResults=n, singleEvents=True,
+    date = datetime.datetime.combine(date, datetime.datetime.min.time())
+    end_date = datetime.datetime.combine(date, datetime.datetime.max.time())
+    utc = pytz.UTC
+    date = date.astimezone(utc)
+    end_date = end_date.astimezone(utc)
+
+
+
+    events_result = service.events().list(calendarId='primary', timeMin=date.isoformat(), timeMax=end_date.isoformat(),
+                                        singleEvents=True,
                                         orderBy='startTime').execute()
     events = events_result.get('items', [])
 
     if not events:
-        print('No upcoming events found.')
-    for event in events:
-        start = event['start'].get('dateTime', event['start'].get('date'))
-        print(start, event['summary'])
+        speak('No upcoming events found.')
+    else:
+        speak(f"You have {len(events)} events on this day.")
+
+        for event in events:
+            start = event['start'].get('dateTime', event['start'].get('date'))
+            print(start, event['summary'])
+            start_time = str(start.split("T")[1].split(":")[0])  # get the hour the event starts
+            if int(start_time.split(":")[0]) < 12:  # if the event is in the morning
+                start_time = start_time + "am"
+            else:
+                start_time = str(int(start_time.split(":")[0])-12)  # convert 24 hour time to regular
+                start_time = start_time + "pm"  
+
+            speak(event["summary"] + " at " + start_time)
 
 
 def get_date(text):
-    text = text.lower()
     today = datetime.date.today()
 
     if text.count("today") > 0:
         return today
-    
+
     day = -1
     day_of_week = -1
     month = -1
@@ -77,7 +108,7 @@ def get_date(text):
         elif word.isdigit():
             day = int(word)
         else:
-            for ext in DAYS_EXTENSIONS:
+            for ext in DAY_EXTENSIONS:
                 found = word.find(ext)
                 if found > 0:
                     try:
@@ -85,20 +116,27 @@ def get_date(text):
                     except:
                         pass
 
-    if month < today.month and month != -1:
-        year = year + 1
+    if month < today.month and month != -1:  
+        year = year+1
+
     
-    if day < today.day and month == -1 and day != -1:
-        month = month + 1
+    if month == -1 and day != -1:  
+        if day < today.day:
+            month = today.month + 1
+        else:
+            month = today.month
+
     
     if month == -1 and day == -1 and day_of_week != -1:
         current_day_of_week = today.weekday()
-        diff = day_of_week - current_day_of_week
+        dif = day_of_week - current_day_of_week
 
-        if diff < 0:
-            diff += 7
+        if dif < 0:
+            dif += 7
             if text.count("next") >= 1:
-                diff += 7
-    
-        return today + datetime.timedelta(diff)
-    return datetime.time(month=month, day=day, year=year)
+                dif += 7
+
+        return today + datetime.timedelta(dif)
+
+    if day != -1:  # FIXED FROM VIDEO
+        return datetime.date(month=month, day=day, year=year)
