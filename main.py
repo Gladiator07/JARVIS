@@ -1,7 +1,10 @@
 from Jarvis import JarvisAssistant
-import json, re, random, pprint
+import json, re, random, pprint, webbrowser
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+import urllib.request #used to make requests
+import urllib.parse #used to parse values into the url
+
 
 
 obj = JarvisAssistant()
@@ -99,4 +102,17 @@ while True:
             search = driver.find_element_by_name('q')
             search.send_keys(str(search_for))
             search.send_keys(Keys.RETURN)
-         
+
+    
+    # elif 'youtube' in command:
+    #     speak('Ok!')
+    #     reg_ex = re.search('youtube (.+)', command)
+    #     if reg_ex:
+    #         domain = command.split("youtube",1)[1] 
+    #         query_string = urllib.parse.urlencode({"search_query" : domain})
+    #         html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string) 
+    #         search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode()) # finds all links in search result
+    #         webbrowser.open("http://www.youtube.com/watch?v={}".format(search_results[0]))
+    #         pass
+
+    

@@ -88,7 +88,7 @@ class JarvisAssistant:
         return website_open.website_opener(domain)
 
 
-    def weather(self, city='Jalgaon'):
+    def weather(self, city):
         """
         Return weather
         :param city: Any city of this world
