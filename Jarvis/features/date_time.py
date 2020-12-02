@@ -16,7 +16,7 @@ def date():
 
 def time():
     """
-    Just return date as string
+    Just return time as string
     :return: time if success, False if fail
     """
     try:
