@@ -7,3 +7,4 @@ experiments/
 config.py
 *.pickle
 credentials.json
+*.txt
