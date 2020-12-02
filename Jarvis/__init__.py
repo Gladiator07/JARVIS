@@ -120,6 +120,6 @@ class JarvisAssistant:
         """
         return news.get_news()
     
-    def send_mail(self, sender_email=None, sender_password=None, receiver_email=None, msg="Hello"):
+    def send_mail(self, sender_email, sender_password, receiver_email, msg):
 
         return email.mail(sender_email, sender_password, receiver_email, msg)
