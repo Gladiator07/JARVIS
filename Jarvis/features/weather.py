@@ -1,28 +1,5 @@
 import requests
-
-
-def get_temperature(json_data):
-    temp_in_celcius = json_data['main']['temp']
-    return temp_in_celcius
-
-
-def get_weather_type(json_data):
-    weather_type = json_data['weather'][0]['description']
-    return weather_type
-
-
-def get_wind_speed(json_data):
-    wind_speed = json_data['wind']['speed']
-    return wind_speed
-
-
-def get_weather_data(json_data, city):
-    # description_of_weather = json_data['weather'][0]['description']
-    weather_type = get_weather_type(json_data)
-    temperature = get_temperature(json_data)
-    wind_speed = get_wind_speed(json_data)
-    weather_details = ''
-    return weather_details + ("The weather in {} is currently {} with a temperature of {} degrees and wind speeds reaching {} km/ph".format(city, weather_type, temperature, wind_speed))
+import json
 
 
 def main_weather(city):
@@ -31,14 +8,27 @@ def main_weather(city):
     :param city: City
     :return: weather
     """
-    api_address = 'https://api.openweathermap.org/data/2.5/weather?q=Sydney,au&appid=a10fd8a212e47edf8d946f26fb4cdef8&q='
+    api_key = "9d7cde1f6d07ec55650544be1631307e"
     units_format = "&units=metric"
-    final_url = api_address + city + units_format
-    json_data = requests.get(final_url).json()
-    weather_details = get_weather_data(json_data, city)
-    return weather_details
 
+    base_url = "http://api.openweathermap.org/data/2.5/weather?q="
+    complete_url = base_url + city + "&appid=" + api_key + units_format
 
-def weather_app(city):
-    weather_res = main_weather(city)
-    return weather_res
+    response = requests.get(complete_url)
+
+    city_weather_data = response.json()
+
+    if city_weather_data["cod"] != "404":
+        main_data = city_weather_data["main"]
+        weather_description_data = city_weather_data["weather"]
+        weather_description = weather_description_data["description"]
+        current_temperature = main_data["temp"]
+        current_pressure = main_data["pressure"]
+        current_humidity = main_data["humidity"]
+        wind_data = city_weather_data["wind"]
+        wind_speed = wind_data["speed"]
+
+        return (f"The weather in {city} is currently {weather_description} with a temperature of {current_temperature}, atmospheric pressure of {current_pressure}, humidity of {current_humidity} and wind speed reaching {wind_speed} kilometers per hour")
+
+    else:
+        return ("Sorry sir, could not find city in my database. Please try again..")
