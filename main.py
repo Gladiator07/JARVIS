@@ -1,5 +1,9 @@
 from Jarvis import JarvisAssistant
 import json, re, random, pprint
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+
 obj = JarvisAssistant()
 
 # ================================ MEMORY ===========================================================================================================
@@ -47,11 +51,11 @@ while True:
         speak(random.choice(GREETINGS_RES))
 
     
-    if re.search('open', command):
-        domain = command.split(' ')[-1]
-        open_result = obj.website_opener(domain)
-        speak(f'Alright sir !! Opening {domain}')
-        print(open_result)
+    # if re.search('open', command):
+    #     domain = command.split(' ')[-1]
+    #     open_result = obj.website_opener(domain)
+    #     speak(f'Alright sir !! Opening {domain}')
+    #     print(open_result)
 
     if re.search('weather|temperature', command):
         city = command.split(' ')[-1]
@@ -79,3 +83,20 @@ while True:
                 break
             # speak('Moving on the next news headline..')
         speak('These were the top headlines, Have a nice day Sir!!..')
+
+    if 'search google for' in command:
+            reg_ex = re.search('search google for (.*)', command)
+            search_for = command.split("for", 1)[1]
+            url = 'https://www.google.com/'
+            if reg_ex:
+                subgoogle = reg_ex.group(1)
+                url = url + 'r/' + subgoogle
+            speak("Okay sir!")
+            speak(f"Searching for {subgoogle}")
+            driver = webdriver.Chrome(
+                executable_path='driver/chromedriver.exe')
+            driver.get('https://www.google.com')
+            search = driver.find_element_by_name('q')
+            search.send_keys(str(search_for))
+            search.send_keys(Keys.RETURN)
+         
