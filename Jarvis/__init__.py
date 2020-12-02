@@ -115,4 +115,3 @@ class JarvisAssistant:
         :return: news list of string if True, False if fail
         """
         return news.get_news()
-        
