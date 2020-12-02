@@ -95,7 +95,7 @@ class JarvisAssistant:
         :return: weather info as string if True, or False
         """
         try:
-            res = weather.weather_app(city)
+            res = weather.fetch_weather(city)
         except Exception as e:
             print(e)
             res = False

@@ -60,7 +60,7 @@ while True:
     #     speak(f'Alright sir !! Opening {domain}')
     #     print(open_result)
 
-    if re.search('weather|temperature', command):
+    if re.search('weather', command):
         city = command.split(' ')[-1]
         weather_res = obj.weather(city=city)
         print(weather_res)
@@ -115,4 +115,3 @@ while True:
     #         webbrowser.open("http://www.youtube.com/watch?v={}".format(search_results[0]))
     #         pass
 
-    

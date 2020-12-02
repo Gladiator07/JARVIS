@@ -2,7 +2,7 @@ import requests
 import json
 
 
-def main_weather(city):
+def fetch_weather(city):
     """
     City to weather
     :param city: City
@@ -20,7 +20,7 @@ def main_weather(city):
 
     if city_weather_data["cod"] != "404":
         main_data = city_weather_data["main"]
-        weather_description_data = city_weather_data["weather"]
+        weather_description_data = city_weather_data["weather"][0]
         weather_description = weather_description_data["description"]
         current_temperature = main_data["temp"]
         current_pressure = main_data["pressure"]
@@ -28,7 +28,14 @@ def main_weather(city):
         wind_data = city_weather_data["wind"]
         wind_speed = wind_data["speed"]
 
-        return (f"The weather in {city} is currently {weather_description} with a temperature of {current_temperature}, atmospheric pressure of {current_pressure}, humidity of {current_humidity} and wind speed reaching {wind_speed} kilometers per hour")
+        final_response = f"""
+        The weather in {city} is currently {weather_description} 
+        with a temperature of {current_temperature} degree celcius, 
+        atmospheric pressure of {current_pressure} hectoPascals, 
+        humidity of {current_humidity} percent 
+        and wind speed reaching {wind_speed} kilometers per hour"""
+
+        return final_response
 
     else:
-        return ("Sorry sir, could not find city in my database. Please try again..")
+        return "Sorry Sir, I couldn't find the city in my database. Please try again"
