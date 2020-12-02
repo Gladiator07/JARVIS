@@ -128,4 +128,4 @@ class JarvisAssistant:
     def google_calendar_events(self):
 
         service = google_calendar.authenticate_google()
-        get_events(7, service)
+        google_calendar.get_events(7, service)
