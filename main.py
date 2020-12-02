@@ -122,11 +122,23 @@ while True:
     #     reg_ex = re.search('youtube (.+)', command)
     #     if reg_ex:
     #         domain = command.split("youtube",1)[1]
-    #         query_string = urllib.parse.urlencode({"search_query" : domain})
-    #         html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
-    #         search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode()) # finds all links in search result
-    #         webbrowser.open("http://www.youtube.com/watch?v={}".format(search_results[0]))
-    #         pass
+    #         song = urllib.parse.urlencode({"search_query" : domain})
+    #         print(song)
+
+    #         # fetch the ?v=query_string
+    #         result = urllib.request.urlopen("http://www.youtube.com/results?" + song)
+    #         print(result)
+
+    #         # make the url of the first result song
+    #         search_results = re.findall(r'href=\"\/watch\?v=(.{11})', result.read().decode())
+    #         print(search_results)
+
+    #         # make the final url of song selects the very first result from youtube result
+    #         url = "http://www.youtube.com/watch?v="+search_results[0]
+
+    #         # play the song using webBrowser module which opens the browser 
+    #         # webbrowser.open(url, new = 1)
+    #         webbrowser.open_new(url)
 
     if "email" in command or "send email" in command:
         sender_email = config.email
@@ -163,3 +175,4 @@ while True:
         note_text = obj.mic_input()
         obj.take_note(note_text)
         speak("I've made a note of that")
+    
