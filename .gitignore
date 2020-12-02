@@ -4,3 +4,4 @@ env/
 __pycache__/
 experiments/
 *.log
+config.py
