@@ -1,5 +1,6 @@
 import requests
 import json
+import config
 
 
 def fetch_weather(city):
@@ -8,7 +9,7 @@ def fetch_weather(city):
     :param city: City
     :return: weather
     """
-    api_key = "9d7cde1f6d07ec55650544be1631307e"
+    api_key = config.weather_api_key
     units_format = "&units=metric"
 
     base_url = "http://api.openweathermap.org/data/2.5/weather?q="
