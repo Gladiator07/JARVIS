@@ -15,7 +15,6 @@ GREETINGS = ["hello jarvis", "jarvis", "wake up jarvis", "you there jarvis", "ti
 "ok jarvis", "are you there"]
 GREETINGS_RES = ["always there for you sir", "i am ready sir", "your wish my command", "how can i help you sir?", "i am online and ready sir"]
 
-NEWS = ["buzzing today", "top headlines", "news"]
 
 
 
@@ -33,6 +32,11 @@ while True:
         print(date)
         speak(date)
     
+    if "time" in command:
+        time = obj.tell_time()
+        print(time)
+        speak(f"Sir the time is {time}")
+
     if re.search('launch', command):
         dict_app = {
             'chrome': 'C:/Program Files/Google/Chrome/Application/chrome'
