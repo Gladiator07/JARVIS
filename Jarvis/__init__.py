@@ -10,6 +10,7 @@ from Jarvis.features import weather
 from Jarvis.features import wikipedia
 from Jarvis.features import news
 from Jarvis.features import send_email
+from Jarvis.features import google_search
 from Jarvis.features import google_calendar
 from Jarvis.features import note
 
@@ -127,6 +128,9 @@ class JarvisAssistant:
             return google_calendar.get_events(date, service)
         else:
             pass
+    
+    def search_anything_google(self, command):
+        google_search.google_search(command)
 
     def take_note(self, text):
         note.note(text)

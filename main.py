@@ -102,20 +102,8 @@ while True:
         speak('These were the top headlines, Have a nice day Sir!!..')
 
     if 'search google for' in command:
-        reg_ex = re.search('search google for (.*)', command)
-        search_for = command.split("for", 1)[1]
-        url = 'https://www.google.com/'
-        if reg_ex:
-            subgoogle = reg_ex.group(1)
-            url = url + 'r/' + subgoogle
-        speak("Okay sir!")
-        speak(f"Searching for {subgoogle}")
-        driver = webdriver.Chrome(
-            executable_path='driver/chromedriver.exe')
-        driver.get('https://www.google.com')
-        search = driver.find_element_by_name('q')
-        search.send_keys(str(search_for))
-        search.send_keys(Keys.RETURN)
+        obj.search_anything_google(command)
+        
 
     # elif 'youtube' in command:
     #     speak('Ok!')
