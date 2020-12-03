@@ -13,6 +13,7 @@ from Jarvis.features import send_email
 from Jarvis.features import google_search
 from Jarvis.features import google_calendar
 from Jarvis.features import note
+from Jarvis.features import system_stats
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -56,7 +57,7 @@ class JarvisAssistant:
         try:
             engine.say(text)
             engine.runAndWait()
-            engine.setProperty('rate', 180)
+            engine.setProperty('rate', 175)
             return True
         except:
             t = "Sorry I couldn't understand and handle this input"
@@ -134,3 +135,6 @@ class JarvisAssistant:
 
     def take_note(self, text):
         note.note(text)
+    
+    def system_info(self):
+        return system_stats.system_stats()

@@ -11,7 +11,7 @@ from selenium.webdriver.common.keys import Keys
 import urllib.request  # used to make requests
 import urllib.parse  # used to parse values into the url
 import pyjokes
-
+import time
 obj = JarvisAssistant()
 
 # ================================ MEMORY ===========================================================================================================
@@ -67,11 +67,11 @@ while True:
     if command in GREETINGS:
         speak(random.choice(GREETINGS_RES))
 
-    # if re.search('open', command):
-    #     domain = command.split(' ')[-1]
-    #     open_result = obj.website_opener(domain)
-    #     speak(f'Alright sir !! Opening {domain}')
-    #     print(open_result)
+    if re.search('open', command):
+        domain = command.split(' ')[-1]
+        open_result = obj.website_opener(domain)
+        speak(f'Alright sir !! Opening {domain}')
+        print(open_result)
 
     if re.search('weather', command):
         city = command.split(' ')[-1]
@@ -89,7 +89,7 @@ while True:
             speak(
                 "Sorry sir. I couldn't load your query from my database. Please try again")
 
-    if "buzzing today" in command or "news" in command:
+    if "buzzing" in command or "news" in command or "headlines" in command:
         news_res = obj.news()
         speak('Source: The Times Of India')
         speak('Todays Headlines are..')
@@ -154,9 +154,8 @@ while True:
         except:
             speak("Sorry sir. Couldn't send your mail. Please try again")
 
-    if "what do i have" in command or "do i have plans" or "am i busy" in command:
-        text = command
-        obj.google_calendar_events(text)
+    elif "what do i have" in command or "do i have plans" or "am i busy" in command:
+        obj.google_calendar_events(command)
 
     if "make a note" in command or "write this down" in command or "remember this" in command:
         speak("What would you like me to write down?")
@@ -168,4 +167,9 @@ while True:
         joke = pyjokes.get_joke()
         print(joke)
         speak(joke)
+    
+    if "system" in command:
+        sys_info = obj.system_info()
+        print(sys_info)
+        speak(sys_info)
     
