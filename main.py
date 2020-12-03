@@ -10,7 +10,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import urllib.request  # used to make requests
 import urllib.parse  # used to parse values into the url
-
+import pyjokes
 
 obj = JarvisAssistant()
 
@@ -175,4 +175,9 @@ while True:
         note_text = obj.mic_input()
         obj.take_note(note_text)
         speak("I've made a note of that")
+    
+    if "joke" in command:
+        joke = pyjokes.get_joke()
+        print(joke)
+        speak(joke)
     
