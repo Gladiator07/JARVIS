@@ -173,3 +173,6 @@ while True:
         print(sys_info)
         speak(sys_info)
     
+    if "where is" in command:
+        location = command.split(' ')[-1]
+        obj.location(location)

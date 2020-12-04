@@ -14,6 +14,7 @@ from Jarvis.features import google_search
 from Jarvis.features import google_calendar
 from Jarvis.features import note
 from Jarvis.features import system_stats
+from Jarvis.features import loc
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -138,3 +139,7 @@ class JarvisAssistant:
     
     def system_info(self):
         return system_stats.system_stats()
+
+    def location(self, location):
+        loc.loc(location)
+        
