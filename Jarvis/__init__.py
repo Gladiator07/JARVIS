@@ -141,5 +141,6 @@ class JarvisAssistant:
         return system_stats.system_stats()
 
     def location(self, location):
-        loc.loc(location)
+        current_loc, target_loc, distance = loc.loc(location)
+        return current_loc, target_loc, distance
         
