@@ -174,5 +174,24 @@ while True:
         speak(sys_info)
     
     if "where is" in command:
-        location = command.split(' ')[-1]
-        obj.location(location)
+        place = command.split('where is ', 1)[1]
+        current_loc, target_loc, distance = obj.location(place)
+        city = target_loc.get('city', '')
+        state = target_loc.get('state', '')
+        country = target_loc.get('country', '')
+        time.sleep(1)
+        try:
+
+            if city:
+                res = f"{place} is in {state} state and country {country}. It is {distance} km away from your current location"
+                print(res)
+                speak(res)
+            
+            else:
+                res = f"{state} is a state in {country}. It is {distance} km away from your current location"
+                print(res)
+                speak(res)
+
+        except:
+            res = "Sorry sir, I couldn't get the co-ordinates of the location you requested. Please try again"
+            speak(res)
