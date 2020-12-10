@@ -12,8 +12,14 @@ def loc(place):
     target_loc = {'city': location.get('city', ''),
                    'state': location.get('state', ''),
                    'country': location.get('country', '')}
+
     current_loc = geocoder.ip('me')
     current_latlng = current_loc.latlng
-    distance = great_circle(current_latlng, target_latlng)
+
+    distance = str(great_circle(current_latlng, target_latlng))
+    distance = str(distance.split(' ',1)[0])
+    distance = round(float(distance), 2)
+    
     return current_loc, target_loc, distance
+
 
