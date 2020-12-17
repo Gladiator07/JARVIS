@@ -138,5 +138,5 @@ def get_date(text):
 
         return today + datetime.timedelta(dif)
 
-    if day != -1:  # FIXED FROM VIDEO
+    if day != -1:
         return datetime.date(month=month, day=day, year=year)
