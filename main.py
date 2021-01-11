@@ -1,11 +1,6 @@
 from Jarvis import JarvisAssistant
-import json
-import re
-import random
-import pprint
-import webbrowser
+import json, re, os, random, pprint, webbrowser, datetime
 import config
-import datetime
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import urllib.request  # used to make requests
@@ -162,6 +157,11 @@ while True:
         note_text = obj.mic_input()
         obj.take_note(note_text)
         speak("I've made a note of that")
+    
+    elif "close the note" in command or "close notepad" in command:
+        speak("Okay sir, closing notepad")
+        os.system("taskkill /f /im notepad.exe")
+
     
     elif "joke" in command:
         joke = pyjokes.get_joke()
