@@ -43,12 +43,12 @@ while True:
         print(date)
         speak(date)
 
-    if "time" in command:
+    elif "time" in command:
         time = obj.tell_time()
         print(time)
         speak(f"Sir the time is {time}")
 
-    if re.search('launch', command):
+    elif re.search('launch', command):
         dict_app = {
             'chrome': 'C:/Program Files/Google/Chrome/Application/chrome'
         }
@@ -64,22 +64,22 @@ while True:
             speak('Launching: ' + app + 'for you sir!')
             obj.launch_any_app(path_of_app=path)
 
-    if command in GREETINGS:
+    elif command in GREETINGS:
         speak(random.choice(GREETINGS_RES))
 
-    if re.search('open', command):
+    elif re.search('open', command):
         domain = command.split(' ')[-1]
         open_result = obj.website_opener(domain)
         speak(f'Alright sir !! Opening {domain}')
         print(open_result)
 
-    if re.search('weather', command):
+    elif re.search('weather', command):
         city = command.split(' ')[-1]
         weather_res = obj.weather(city=city)
         print(weather_res)
         speak(weather_res)
 
-    if re.search('tell me about', command):
+    elif re.search('tell me about', command):
         topic = command.split(' ')[-1]
         if topic:
             wiki_res = obj.tell_me(topic)
@@ -89,7 +89,7 @@ while True:
             speak(
                 "Sorry sir. I couldn't load your query from my database. Please try again")
 
-    if "buzzing" in command or "news" in command or "headlines" in command:
+    elif "buzzing" in command or "news" in command or "headlines" in command:
         news_res = obj.news()
         speak('Source: The Times Of India')
         speak('Todays Headlines are..')
@@ -101,7 +101,7 @@ while True:
             # speak('Moving on the next news headline..')
         speak('These were the top headlines, Have a nice day Sir!!..')
 
-    if 'search google for' in command:
+    elif 'search google for' in command:
         obj.search_anything_google(command)
         
 
@@ -128,7 +128,7 @@ while True:
     #         # webbrowser.open(url, new = 1)
     #         webbrowser.open_new(url)
 
-    if "email" in command or "send email" in command:
+    elif "email" in command or "send email" in command:
         sender_email = config.email
         sender_password = config.email_password
 
@@ -157,23 +157,23 @@ while True:
     elif "what do i have" in command or "do i have plans" or "am i busy" in command:
         obj.google_calendar_events(command)
 
-    if "make a note" in command or "write this down" in command or "remember this" in command:
+    elif "make a note" in command or "write this down" in command or "remember this" in command:
         speak("What would you like me to write down?")
         note_text = obj.mic_input()
         obj.take_note(note_text)
         speak("I've made a note of that")
     
-    if "joke" in command:
+    elif "joke" in command:
         joke = pyjokes.get_joke()
         print(joke)
         speak(joke)
     
-    if "system" in command:
+    elif "system" in command:
         sys_info = obj.system_info()
         print(sys_info)
         speak(sys_info)
     
-    if "where is" in command:
+    elif "where is" in command:
         place = command.split('where is ', 1)[1]
         current_loc, target_loc, distance = obj.location(place)
         city = target_loc.get('city', '')
