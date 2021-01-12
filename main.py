@@ -305,6 +305,9 @@ class Main(QMainWindow):
         self.ui.pushButton.clicked.connect(self.startTask)
         self.ui.pushButton_2.clicked.connect(self.close)
 
+    
+    def __del__(self):
+        sys.stdout = sys.__stdout__
 
     # def run(self):
     #     self.TaskExection

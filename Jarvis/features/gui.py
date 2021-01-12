@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
+        MainWindow.setObjectName("Jarvis 2.0")
         MainWindow.resize(1440, 900)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -41,20 +41,20 @@ class Ui_MainWindow(object):
         self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser.setGeometry(QtCore.QRect(640, 30, 291, 61))
         self.textBrowser.setStyleSheet("font: 75 16pt \"MS Shell Dlg 2\";\n"
-"background-color:transparent;\n"
+"background-color:transparent;\ncolor:white;"
 "border-radius:none;\n"
 "")
         self.textBrowser.setObjectName("textBrowser")
         self.textBrowser_2 = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser_2.setGeometry(QtCore.QRect(930, 30, 291, 61))
         self.textBrowser_2.setStyleSheet("font: 75 16pt \"MS Shell Dlg 2\";\n"
-"background-color:transparent;\n"
+"background-color:transparent;\ncolor:white;"
 "border-radius:none;")
         self.textBrowser_2.setObjectName("textBrowser_2")
         self.textBrowser_3 = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser_3.setGeometry(QtCore.QRect(1000, 500, 431, 281))
         self.textBrowser_3.setStyleSheet("font: 11pt \"MS Shell Dlg 2\";\n"
-"background-color:transparent;")
+"background-color:transparent;\ncolor:white;")
         self.textBrowser_3.setObjectName("textBrowser_3")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
