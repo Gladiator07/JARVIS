@@ -7,6 +7,8 @@ import urllib.request  # used to make requests
 import urllib.parse  # used to parse values into the url
 import pyjokes
 import time
+import pyautogui
+
 obj = JarvisAssistant()
 
 # ================================ MEMORY ===========================================================================================================
@@ -206,3 +208,12 @@ if __name__ == "__main__":
             print(ip)
             speak(f"Your ip address is {ip}")
 
+        elif "switch the window" in command or "switch window" in command:
+            speak("Okay sir, Switching the window")
+            pyautogui.keyDown("alt")
+            pyautogui.press("tab")
+            time.sleep(1)
+            pyautogui.keyUp("alt")
+
+
+        
