@@ -8,6 +8,7 @@ import urllib.parse  # used to parse values into the url
 import pyjokes
 import time
 import pyautogui
+from PIL import Image
 
 obj = JarvisAssistant()
 
@@ -217,6 +218,29 @@ if __name__ == "__main__":
 
         
         elif "where i am" in command or "current location" in command or "where am i" in command:
-            city, state, country = obj.my_location()
-            print(city, state, country)
-            speak(f"You are currently in {city} city which is in {state} state and country {country}")
+            try:
+                city, state, country = obj.my_location()
+                print(city, state, country)
+                speak(f"You are currently in {city} city which is in {state} state and country {country}")
+            except Exception as e:
+                speak("Sorry sir, I coundn't fetch your current location. Please try again")
+
+        elif "take screenshot" in command or "take a screenshot" in command or "capture the screen" in command:
+            speak("By what name do you want to save the screenshot?")
+            name = obj.mic_input()
+            speak("Alright sir, taking the screenshot")
+            img = pyautogui.screenshot()
+            name = f"{name}.png"
+            img.save(name)
+            speak("The screenshot has been succesfully captured")
+
+        elif "show me the screenshot" in command:
+            try:
+                img = Image.open('D://JARVIS//JARVIS_2.0//' + name)
+                img.show(img)
+                speak("Here it is sir")
+                time.sleep(2)
+            
+            except IOError:
+                speak("Sorry sir, I am unable to display the screenshot")
+
