@@ -68,9 +68,9 @@ class MainThread(QThread):
                 speak(date)
 
             elif "time" in command:
-                time = obj.tell_time()
-                print(time)
-                speak(f"Sir the time is {time}")
+                time_c = obj.tell_time()
+                print(time_c)
+                speak(f"Sir the time is {time_c}")
 
             elif re.search('launch', command):
                 dict_app = {
