@@ -9,7 +9,7 @@ import pyjokes
 import time
 import pyautogui
 from PIL import Image
-
+import wolframalpha
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QTimer, QTime, QDate, Qt
 from PyQt5.QtGui import QMovie
@@ -41,6 +41,15 @@ CALENDAR_STRS = ["what do i have", "do i have plans", "am i busy"]
 # =======================================================================================================================================================
 def speak(text):
     obj.tts(text)
+
+app_id = config.wolframalpha_id
+def computational_intelligence(question):
+    client = wolframalpha.Client(app_id)
+    answer = client.query(question)
+    answer = next(answer.results).text
+    print(answer)
+    
+    return answer
 
 def wish():
     speak("I am Jarvis. Online and ready sir. Please tell me how may I help you")
@@ -274,6 +283,17 @@ class MainThread(QThread):
             elif "visible" in command or "make files visible" in command:
                 os.system("attrib -h /s /d")
                 speak("Sir, all the files in this folder are now visible to everyone. I hope you are taking this decision in your own peace")
+
+            # if "calculate" in command or "what is" in command:
+            #     query = command
+            #     answer = computational_intelligence(query)
+            #     speak(answer)
+
+
+
+
+
+
 
 startExecution = MainThread()
 

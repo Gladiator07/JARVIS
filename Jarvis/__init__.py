@@ -149,33 +149,3 @@ class JarvisAssistant:
     def my_location(self):
         city, state, country = loc.my_location()
         return city, state, country
-    
-# startExection = MainThread()
-
-
-# class MainThread(QThread):
-#     def __init__(self):
-#         super(MainThread, self).__init__()
-    
-#     def run(self):
-# class Main(QMainWindow):
-#     def __init__(self):
-#         super().__init__()
-#         self.ui = Ui_MainWindow()
-#         self.ui.setupUi(self)
-#         self.ui.pushButton.clicked.connect(self.startTask)
-#         self.ui.pushButton_2.clicked.connect(self.close)
-
-
-#     # def run(self):
-#     #     self.TaskExection
-#     def startTask(self):
-#         self.ui.movie = QtGui.Qmovie("Jarvis/utils/images/live_wallpaper.gif")
-#         self.ui.label.setMovie(self.ui.movie)
-#         self.ui.movie.start()
-#         self.ui.movie = QtGui.Qmovie("Jarvis/utils/images/initiating.gif")
-#         self.ui.label_2.setMovie(self.ui.movie)
-#         self.ui.movie.start()
-#         timer = QTimer(self)
-#         timer.timeout.connect(self.showTime)
-#         time.start(1000)
