@@ -215,5 +215,8 @@ if __name__ == "__main__":
             time.sleep(1)
             pyautogui.keyUp("alt")
 
-
         
+        elif "where i am" in command or "current location" in command or "where am i" in command:
+            city, state, country = obj.my_location()
+            print(city, state, country)
+            speak(f"You are currently in {city} city which is in {state} state and country {country}")

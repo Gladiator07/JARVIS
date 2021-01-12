@@ -143,4 +143,8 @@ class JarvisAssistant:
     def location(self, location):
         current_loc, target_loc, distance = loc.loc(location)
         return current_loc, target_loc, distance
+
+    def my_location(self):
+        city, state, country = loc.my_location()
+        return city, state, country
         

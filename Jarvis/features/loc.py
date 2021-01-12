@@ -1,4 +1,4 @@
-import webbrowser
+import webbrowser, requests
 from geopy.geocoders import Nominatim
 from geopy.distance import great_circle
 import geocoder
@@ -21,5 +21,17 @@ def loc(place):
     distance = round(float(distance), 2)
 
     return current_loc, target_loc, distance
+
+def my_location():
+    ip_add = requests.get('https://api.ipify.org').text
+    url = 'https://get.geojs.io/v1/ip/geo/' + ip_add + '.json'
+    geo_requests = requests.get(url)
+    geo_data = geo_requests.json()
+    city = geo_data['city']
+    state = geo_data['region']
+    country = geo_data['country']
+
+    return city, state,country
+
 
 
