@@ -243,4 +243,12 @@ if __name__ == "__main__":
             
             except IOError:
                 speak("Sorry sir, I am unable to display the screenshot")
+        
 
+        elif "hide all files" in command or "hide this folder" in command:
+            os.system("attrib +h /s /d")
+            speak("Sir, all the files in this folder are now hidden")
+        
+        elif "visible" in command or "make files visible" in command:
+            os.system("attrib -h /s /d")
+            speak("Sir, all the files in this folder are now visible to everyone. I hope you are taking this decision in your own peace")
