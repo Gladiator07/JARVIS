@@ -1,6 +1,14 @@
 from Jarvis import JarvisAssistant
-import json, re, os, random, pprint, webbrowser, datetime, requests
-import config, sys
+import json
+import re
+import os
+import random
+import pprint
+import webbrowser
+import datetime
+import requests
+import config
+import sys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import urllib.request  # used to make requests
@@ -40,17 +48,27 @@ EMAIL_DIC = {
 
 CALENDAR_STRS = ["what do i have", "do i have plans", "am i busy"]
 # =======================================================================================================================================================
+
+
 def speak(text):
     obj.tts(text)
 
+
 app_id = config.wolframalpha_id
+
+
 def computational_intelligence(question):
-    client = wolframalpha.Client(app_id)
-    answer = client.query(question)
-    answer = next(answer.results).text
-    print(answer)
+    try:
+        client = wolframalpha.Client(app_id)
+        answer = client.query(question)
+        answer = next(answer.results).text
+        print(answer)
+        return answer
+    except:
+        speak("Sorry sir I couldn't fetch your question's answer. Please try again ")
+        return None
     
-    return answer
+
 
 def wish():
     speak("I am Jarvis. Online and ready sir. Please tell me how may I help you")
@@ -64,10 +82,9 @@ class MainThread(QThread):
     def run(self):
         self.TaskExecution()
 
-
     def TaskExecution(self):
 
-    # wish()
+        # wish()
 
         while True:
             command = obj.mic_input()
@@ -136,7 +153,6 @@ class MainThread(QThread):
 
             elif 'search google for' in command:
                 obj.search_anything_google(command)
-                
 
             elif 'youtube' in command:
                 video = command.split(' ')[1]
@@ -159,7 +175,7 @@ class MainThread(QThread):
                         message = obj.mic_input()
                         msg = 'Subject: {}\n\n{}'.format(subject, message)
                         obj.send_mail(sender_email, sender_password,
-                                    receiver_email, msg)
+                                      receiver_email, msg)
                         speak("Email has been successfully sent")
 
                     else:
@@ -169,6 +185,16 @@ class MainThread(QThread):
                 except:
                     speak("Sorry sir. Couldn't send your mail. Please try again")
 
+            elif "calculate" in command:
+                question = command
+                answer = computational_intelligence(question)
+                speak(answer)
+            
+            elif "what is" in command or "who is" in command:
+                question = command
+                answer = computational_intelligence(question)
+                speak(answer)
+
             elif "what do i have" in command or "do i have plans" or "am i busy" in command:
                 obj.google_calendar_events(command)
 
@@ -177,22 +203,21 @@ class MainThread(QThread):
                 note_text = obj.mic_input()
                 obj.take_note(note_text)
                 speak("I've made a note of that")
-            
+
             elif "close the note" in command or "close notepad" in command:
                 speak("Okay sir, closing notepad")
                 os.system("taskkill /f /im notepad++.exe")
 
-            
             if "joke" in command:
                 joke = pyjokes.get_joke()
                 print(joke)
                 speak(joke)
-            
+
             elif "system" in command:
                 sys_info = obj.system_info()
                 print(sys_info)
                 speak(sys_info)
-            
+
             elif "where is" in command:
                 place = command.split('where is ', 1)[1]
                 current_loc, target_loc, distance = obj.location(place)
@@ -206,7 +231,7 @@ class MainThread(QThread):
                         res = f"{place} is in {state} state and country {country}. It is {distance} km away from your current location"
                         print(res)
                         speak(res)
-                    
+
                     else:
                         res = f"{state} is a state in {country}. It is {distance} km away from your current location"
                         print(res)
@@ -215,8 +240,7 @@ class MainThread(QThread):
                 except:
                     res = "Sorry sir, I couldn't get the co-ordinates of the location you requested. Please try again"
                     speak(res)
-            
-            
+
             elif "ip address" in command:
                 ip = requests.get('https://api.ipify.org').text
                 print(ip)
@@ -229,14 +253,15 @@ class MainThread(QThread):
                 time.sleep(1)
                 pyautogui.keyUp("alt")
 
-            
             elif "where i am" in command or "current location" in command or "where am i" in command:
                 try:
                     city, state, country = obj.my_location()
                     print(city, state, country)
-                    speak(f"You are currently in {city} city which is in {state} state and country {country}")
+                    speak(
+                        f"You are currently in {city} city which is in {state} state and country {country}")
                 except Exception as e:
-                    speak("Sorry sir, I coundn't fetch your current location. Please try again")
+                    speak(
+                        "Sorry sir, I coundn't fetch your current location. Please try again")
 
             elif "take screenshot" in command or "take a screenshot" in command or "capture the screen" in command:
                 speak("By what name do you want to save the screenshot?")
@@ -253,15 +278,14 @@ class MainThread(QThread):
                     img.show(img)
                     speak("Here it is sir")
                     time.sleep(2)
-                
+
                 except IOError:
                     speak("Sorry sir, I am unable to display the screenshot")
-            
 
             elif "hide all files" in command or "hide this folder" in command:
                 os.system("attrib +h /s /d")
                 speak("Sir, all the files in this folder are now hidden")
-            
+
             elif "visible" in command or "make files visible" in command:
                 os.system("attrib -h /s /d")
                 speak("Sir, all the files in this folder are now visible to everyone. I hope you are taking this decision in your own peace")
@@ -271,15 +295,15 @@ class MainThread(QThread):
             #     answer = computational_intelligence(query)
             #     speak(answer)
 
+            
+
             elif "goodbye" in command or "offline" in command or "bye" in command:
                 speak("Alright sir, going offline. It was nice working with you")
                 sys.exit()
 
 
-
-
-
 startExecution = MainThread()
+
 
 class Main(QMainWindow):
     def __init__(self):
@@ -289,7 +313,6 @@ class Main(QMainWindow):
         self.ui.pushButton.clicked.connect(self.startTask)
         self.ui.pushButton_2.clicked.connect(self.close)
 
-    
     def __del__(self):
         sys.stdout = sys.__stdout__
 
@@ -304,9 +327,9 @@ class Main(QMainWindow):
         self.ui.movie.start()
         timer = QTimer(self)
         timer.timeout.connect(self.showTime)
-        timer.start(1000) 
+        timer.start(1000)
         startExecution.start()
-    
+
     def showTime(self):
         current_time = QTime.currentTime()
         current_date = QDate.currentDate()
