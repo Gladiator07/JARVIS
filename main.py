@@ -8,6 +8,7 @@ import urllib.parse  # used to parse values into the url
 import pyjokes
 import time
 import pyautogui
+import pywhatkit
 from PIL import Image
 import wolframalpha
 from PyQt5 import QtWidgets, QtCore, QtGui
@@ -129,37 +130,18 @@ class MainThread(QThread):
                 for index, articles in enumerate(news_res):
                     pprint.pprint(articles['title'])
                     speak(articles['title'])
-                    if index == len(news_res)-1:
+                    if index == len(news_res)-2:
                         break
-                    # speak('Moving on the next news headline..')
                 speak('These were the top headlines, Have a nice day Sir!!..')
 
             elif 'search google for' in command:
                 obj.search_anything_google(command)
                 
 
-            # elif 'youtube' in command:
-            #     speak('Ok!')
-            #     reg_ex = re.search('youtube (.+)', command)
-            #     if reg_ex:
-            #         domain = command.split("youtube",1)[1]
-            #         song = urllib.parse.urlencode({"search_query" : domain})
-            #         print(song)
-
-            #         # fetch the ?v=query_string
-            #         result = urllib.request.urlopen("http://www.youtube.com/results?" + song)
-            #         print(result)
-
-            #         # make the url of the first result song
-            #         search_results = re.findall(r'href=\"\/watch\?v=(.{11})', result.read().decode())
-            #         print(search_results)
-
-            #         # make the final url of song selects the very first result from youtube result
-            #         url = "http://www.youtube.com/watch?v="+search_results[0]
-
-            #         # play the song using webBrowser module which opens the browser 
-            #         # webbrowser.open(url, new = 1)
-            #         webbrowser.open_new(url)
+            elif 'youtube' in command:
+                video = command.split(' ')[1]
+                speak(f"Okay sir, playing {video} on youtube")
+                pywhatkit.playonyt(video)
 
             elif "email" in command or "send email" in command:
                 sender_email = config.email
@@ -289,7 +271,9 @@ class MainThread(QThread):
             #     answer = computational_intelligence(query)
             #     speak(answer)
 
-
+            elif "goodbye" in command or "offline" in command or "bye" in command:
+                speak("Alright sir, going offline. It was nice working with you")
+                sys.exit()
 
 
 
@@ -336,4 +320,3 @@ app = QApplication(sys.argv)
 jarvis = Main()
 jarvis.show()
 exit(app.exec_())
-        
