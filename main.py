@@ -71,6 +71,15 @@ def computational_intelligence(question):
 
 
 def wish():
+    hour = int(datetime.datetime.now().hour)
+    if hour>=0 and hour<=12:
+        speak("Good Morning")
+    elif hour>12 and hour<18:
+        speak("Good afternoon")
+    else:
+        speak("Good evening")
+    c_time = obj.tell_time()
+    speak("Currently it is {c_time}")
     speak("I am Jarvis. Online and ready sir. Please tell me how may I help you")
 # if __name__ == "__main__":
 
@@ -153,6 +162,12 @@ class MainThread(QThread):
 
             elif 'search google for' in command:
                 obj.search_anything_google(command)
+            
+            elif "play music" in command or "hit some music" in command:
+                music_dir = "F://Songs//Imagine_Dragons"
+                songs = os.listdir(music_dir)
+                for song in songs:
+                    os.startfile(os.path.join(music_dir, song))
 
             elif 'youtube' in command:
                 video = command.split(' ')[1]
