@@ -83,7 +83,7 @@ def startup():
         speak("Good afternoon")
     else:
         speak("Good evening")
-    peak("Currently it is {c_time}")
+    speak("Currently it is {c_time}")
     speak("I am Jarvis. Online and ready sir. Please tell me how may I help you")
     
 
