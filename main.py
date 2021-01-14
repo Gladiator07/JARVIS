@@ -9,10 +9,8 @@ import datetime
 import requests
 import config
 import sys
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import urllib.request  # used to make requests
-import urllib.parse  # used to parse values into the url
+import urllib.request  
+import urllib.parse  
 import pyjokes
 import time
 import pyautogui
@@ -68,6 +66,27 @@ def computational_intelligence(question):
         speak("Sorry sir I couldn't fetch your question's answer. Please try again ")
         return None
     
+def startup():
+    speak("Initialzing Jarvis")
+    speak("Starting all systems applications")
+    speak("Installing and checking all drivers")
+    speak("Caliberating and examining all the core processors")
+    speak("Checking the internet connection")
+    speak("Wait a moment sir")
+    speak("All drivers are up and running")
+    speak("All systems have been activated")
+    speak("Now I am online")
+    hour = int(datetime.datetime.now().hour)
+    if hour>=0 and hour<=12:
+        speak("Good Morning")
+    elif hour>12 and hour<18:
+        speak("Good afternoon")
+    else:
+        speak("Good evening")
+    peak("Currently it is {c_time}")
+    speak("I am Jarvis. Online and ready sir. Please tell me how may I help you")
+    
+
 
 
 def wish():
@@ -92,7 +111,7 @@ class MainThread(QThread):
         self.TaskExecution()
 
     def TaskExecution(self):
-
+        startup()
         # wish()
 
         while True:
