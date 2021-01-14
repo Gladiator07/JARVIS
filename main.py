@@ -67,7 +67,7 @@ def computational_intelligence(question):
         return None
     
 def startup():
-    speak("Initialzing Jarvis")
+    speak("Initializing Jarvis")
     speak("Starting all systems applications")
     speak("Installing and checking all drivers")
     speak("Caliberating and examining all the core processors")
