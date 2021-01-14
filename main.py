@@ -83,7 +83,8 @@ def startup():
         speak("Good afternoon")
     else:
         speak("Good evening")
-    speak("Currently it is {c_time}")
+    c_time = obj.tell_time()
+    speak(f"Currently it is {c_time}")
     speak("I am Jarvis. Online and ready sir. Please tell me how may I help you")
     
 
@@ -98,7 +99,7 @@ def wish():
     else:
         speak("Good evening")
     c_time = obj.tell_time()
-    speak("Currently it is {c_time}")
+    speak(f"Currently it is {c_time}")
     speak("I am Jarvis. Online and ready sir. Please tell me how may I help you")
 # if __name__ == "__main__":
 
@@ -111,8 +112,8 @@ class MainThread(QThread):
         self.TaskExecution()
 
     def TaskExecution(self):
-        startup()
-        # wish()
+        # startup()
+        wish()
 
         while True:
             command = obj.mic_input()
@@ -211,6 +212,7 @@ class MainThread(QThread):
                         obj.send_mail(sender_email, sender_password,
                                       receiver_email, msg)
                         speak("Email has been successfully sent")
+                        time.sleep(2)
 
                     else:
                         speak(
