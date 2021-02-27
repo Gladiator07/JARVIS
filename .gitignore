@@ -9,3 +9,4 @@ config.py
 credentials.json
 *.txt
 *.png
+*.mp4
