@@ -79,9 +79,12 @@ To run this program you will require a bunch of API keys. Register your API key 
   - Add the voice commands through which you want to invoke the function
 
 ## Contribute
-Please read [CONTRIBUTING.md]() for details on our code of conduct, and the process for submitting pull requests.
+Please read [CONTRIBUTING.md](https://github.com/Gladiator07/JARVIS/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests.
 
 ## License
-
+This project is licensed under [MIT License](https://github.com/Gladiator07/JARVIS/blob/master/LICENSE) 2021 Atharva Ingle
 
 ## Future Improvements
+- Generalized conversations can be made possible by incorporating Natural Language Processing
+- GUI can be made more nicer to look at and functional
+- More functionalities can be added
