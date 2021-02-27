@@ -1,8 +1,5 @@
 import speech_recognition as sr
-import os
 import pyttsx3
-import sys
-import json
 
 from Jarvis.features import date_time
 from Jarvis.features import launch_app
@@ -16,6 +13,7 @@ from Jarvis.features import google_calendar
 from Jarvis.features import note
 from Jarvis.features import system_stats
 from Jarvis.features import loc
+
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
