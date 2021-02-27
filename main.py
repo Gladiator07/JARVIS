@@ -1,15 +1,12 @@
 from Jarvis import JarvisAssistant
-import json
 import re
 import os
 import random
 import pprint
-import webbrowser
 import datetime
 import requests
 import config
 import sys
-import urllib.request  
 import urllib.parse  
 import pyjokes
 import time
@@ -112,7 +109,7 @@ class MainThread(QThread):
         self.TaskExecution()
 
     def TaskExecution(self):
-        # startup()
+        startup()
         wish()
 
         while True:
