@@ -5,15 +5,14 @@ import random
 import pprint
 import datetime
 import requests
-import config
 import sys
 import urllib.parse  
 import pyjokes
 import time
 import pyautogui
 import pywhatkit
-from PIL import Image
 import wolframalpha
+from PIL import Image
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QTimer, QTime, QDate, Qt
 from PyQt5.QtGui import QMovie
@@ -22,7 +21,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
 from Jarvis.features.gui import Ui_MainWindow
-
+from Jarvis.config import config
 
 obj = JarvisAssistant()
 
