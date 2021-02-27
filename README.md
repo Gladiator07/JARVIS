@@ -35,3 +35,8 @@ It can do a lot of cool things, some of them being:
 - Can take screenshot and save it with custom filename
 - Can hide all files in a folder and also make them visible again
 - Has a cool Graphical User Interface
+
+## Installation
+
+- First clone the repo
+- 
