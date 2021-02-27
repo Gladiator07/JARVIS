@@ -1,4 +1,5 @@
-import requests, json, config
+import requests
+from Jarvis.config import config
 
 
 
