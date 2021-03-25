@@ -10,7 +10,7 @@
 
 ## Features
 
-#### For a cool demo of this project refer watch this [YouTube video](https://www.youtube.com/watch?v=oKtrHy0ERNA)
+#### For a cool demo of this project watch this [YouTube video](https://www.youtube.com/watch?v=oKtrHy0ERNA)
 
 It can do a lot of cool things, some of them being:
 
