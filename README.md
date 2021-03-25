@@ -59,6 +59,7 @@ To run this program you will require a bunch of API keys. Register your API key 
 - To activate the environment ``` conda activate jarvis ```
 - Navigate to the directory of your project
 - Install all the requirements by just hitting ``` pip install -r requirements.txt ```
+- Install PyAudio from wheel file by following instructions given [here](https://stackoverflow.com/a/55630212)
 - Run the program by ``` python main.py ```
 - Enjoy !!!!
 
