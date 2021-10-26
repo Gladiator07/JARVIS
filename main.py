@@ -123,6 +123,10 @@ class MainThread(QThread):
                 time_c = obj.tell_time()
                 print(time_c)
                 speak(f"Sir the time is {time_c}")
+                
+             elif "shut down" in command:
+                  speak("shutting down")
+                  exit()
 
             elif re.search('launch', command):
                 dict_app = {
@@ -193,6 +197,8 @@ class MainThread(QThread):
             elif "email" in command or "send email" in command:
                 sender_email = config.email
                 sender_password = config.email_password
+                
+             
 
                 try:
                     speak("Whom do you want to email sir ?")
