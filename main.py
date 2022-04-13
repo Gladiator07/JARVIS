@@ -1,17 +1,17 @@
 from Jarvis import JarvisAssistant
-import re
-import os
-import random
-import pprint
-import datetime
-import requests
-import sys
+from re import search
+from os import listdir, startfile, system
+from random import choice
+from pprint import pprint
+from datetime import datetime
+from requests import get
+from sys import argv, exit, __stdout__ 
 import urllib.parse  
-import pyjokes
-import time
-import pyautogui
-import pywhatkit
-import wolframalpha
+from pyjokes import get_joke
+from time import sleep
+from pyautogui import keyDown, press, keyUp, screenshot
+from pywhatkit import playonyt
+from wolframalpha import Client
 from PIL import Image
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QTimer, QTime, QDate, Qt
@@ -53,7 +53,7 @@ app_id = config.wolframalpha_id
 
 def computational_intelligence(question):
     try:
-        client = wolframalpha.Client(app_id)
+        client = Client(app_id)
         answer = client.query(question)
         answer = next(answer.results).text
         print(answer)
@@ -72,7 +72,7 @@ def startup():
     speak("All drivers are up and running")
     speak("All systems have been activated")
     speak("Now I am online")
-    hour = int(datetime.datetime.now().hour)
+    hour = int(datetime.now().hour)
     if hour>=0 and hour<=12:
         speak("Good Morning")
     elif hour>12 and hour<18:
@@ -114,7 +114,7 @@ class MainThread(QThread):
         while True:
             command = obj.mic_input()
 
-            if re.search('date', command):
+            if search('date', command):
                 date = obj.tell_me_date()
                 print(date)
                 speak(date)
@@ -124,7 +124,7 @@ class MainThread(QThread):
                 print(time_c)
                 speak(f"Sir the time is {time_c}")
 
-            elif re.search('launch', command):
+            elif search('launch', command):
                 dict_app = {
                     'chrome': 'C:/Program Files/Google/Chrome/Application/chrome'
                 }
@@ -141,21 +141,21 @@ class MainThread(QThread):
                     obj.launch_any_app(path_of_app=path)
 
             elif command in GREETINGS:
-                speak(random.choice(GREETINGS_RES))
+                speak(choice(GREETINGS_RES))
 
-            elif re.search('open', command):
+            elif search('open', command):
                 domain = command.split(' ')[-1]
                 open_result = obj.website_opener(domain)
                 speak(f'Alright sir !! Opening {domain}')
                 print(open_result)
 
-            elif re.search('weather', command):
+            elif search('weather', command):
                 city = command.split(' ')[-1]
                 weather_res = obj.weather(city=city)
                 print(weather_res)
                 speak(weather_res)
 
-            elif re.search('tell me about', command):
+            elif search('tell me about', command):
                 topic = command.split(' ')[-1]
                 if topic:
                     wiki_res = obj.tell_me(topic)
@@ -170,7 +170,7 @@ class MainThread(QThread):
                 speak('Source: The Times Of India')
                 speak('Todays Headlines are..')
                 for index, articles in enumerate(news_res):
-                    pprint.pprint(articles['title'])
+                    pprint(articles['title'])
                     speak(articles['title'])
                     if index == len(news_res)-2:
                         break
@@ -181,14 +181,14 @@ class MainThread(QThread):
             
             elif "play music" in command or "hit some music" in command:
                 music_dir = "F://Songs//Imagine_Dragons"
-                songs = os.listdir(music_dir)
+                songs = listdir(music_dir)
                 for song in songs:
-                    os.startfile(os.path.join(music_dir, song))
+                    startfile(path.join(music_dir, song))
 
             elif 'youtube' in command:
                 video = command.split(' ')[1]
                 speak(f"Okay sir, playing {video} on youtube")
-                pywhatkit.playonyt(video)
+                playonyt(video)
 
             elif "email" in command or "send email" in command:
                 sender_email = config.email
@@ -208,7 +208,7 @@ class MainThread(QThread):
                         obj.send_mail(sender_email, sender_password,
                                       receiver_email, msg)
                         speak("Email has been successfully sent")
-                        time.sleep(2)
+                        sleep(2)
 
                     else:
                         speak(
@@ -238,10 +238,10 @@ class MainThread(QThread):
 
             elif "close the note" in command or "close notepad" in command:
                 speak("Okay sir, closing notepad")
-                os.system("taskkill /f /im notepad++.exe")
+                system("taskkill /f /im notepad++.exe")
 
             if "joke" in command:
-                joke = pyjokes.get_joke()
+                joke = get_joke() 
                 print(joke)
                 speak(joke)
 
@@ -256,7 +256,7 @@ class MainThread(QThread):
                 city = target_loc.get('city', '')
                 state = target_loc.get('state', '')
                 country = target_loc.get('country', '')
-                time.sleep(1)
+                sleep(1)
                 try:
 
                     if city:
@@ -274,16 +274,16 @@ class MainThread(QThread):
                     speak(res)
 
             elif "ip address" in command:
-                ip = requests.get('https://api.ipify.org').text
+                ip = get('https://api.ipify.org').text
                 print(ip)
                 speak(f"Your ip address is {ip}")
 
             elif "switch the window" in command or "switch window" in command:
                 speak("Okay sir, Switching the window")
-                pyautogui.keyDown("alt")
-                pyautogui.press("tab")
-                time.sleep(1)
-                pyautogui.keyUp("alt")
+                keyDown("alt")
+                press("tab")
+                sleep(1)
+                keyUp("alt")
 
             elif "where i am" in command or "current location" in command or "where am i" in command:
                 try:
@@ -299,7 +299,7 @@ class MainThread(QThread):
                 speak("By what name do you want to save the screenshot?")
                 name = obj.mic_input()
                 speak("Alright sir, taking the screenshot")
-                img = pyautogui.screenshot()
+                img = screenshot()
                 name = f"{name}.png"
                 img.save(name)
                 speak("The screenshot has been succesfully captured")
@@ -309,17 +309,17 @@ class MainThread(QThread):
                     img = Image.open('D://JARVIS//JARVIS_2.0//' + name)
                     img.show(img)
                     speak("Here it is sir")
-                    time.sleep(2)
+                    sleep(2)
 
                 except IOError:
                     speak("Sorry sir, I am unable to display the screenshot")
 
             elif "hide all files" in command or "hide this folder" in command:
-                os.system("attrib +h /s /d")
+                system("attrib +h /s /d")
                 speak("Sir, all the files in this folder are now hidden")
 
             elif "visible" in command or "make files visible" in command:
-                os.system("attrib -h /s /d")
+                system("attrib -h /s /d")
                 speak("Sir, all the files in this folder are now visible to everyone. I hope you are taking this decision in your own peace")
 
             # if "calculate" in command or "what is" in command:
@@ -331,7 +331,7 @@ class MainThread(QThread):
 
             elif "goodbye" in command or "offline" in command or "bye" in command:
                 speak("Alright sir, going offline. It was nice working with you")
-                sys.exit()
+                exit()
 
 
 startExecution = MainThread()
@@ -346,7 +346,7 @@ class Main(QMainWindow):
         self.ui.pushButton_2.clicked.connect(self.close)
 
     def __del__(self):
-        sys.stdout = sys.__stdout__
+        stdout = __stdout__
 
     # def run(self):
     #     self.TaskExection
@@ -371,7 +371,7 @@ class Main(QMainWindow):
         self.ui.textBrowser_2.setText(label_time)
 
 
-app = QApplication(sys.argv)
+app = QApplication(argv)
 jarvis = Main()
 jarvis.show()
 exit(app.exec_())
